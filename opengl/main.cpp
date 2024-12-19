@@ -30,6 +30,29 @@ int main(void)
     std::cout << "The versoin of glew is : " << glewGetString(GLEW_VERSION) << std::endl;
     std::cout << "The versoin of OpenGL is : " << glGetString(GL_VERSION) << std::endl;
 
+    //original coordinates
+    float verticesArrf[] = {
+        -0.5f, -0.5f,
+         0.0f,  0.5f,
+         0.5f, -0.5f
+    };
+
+    //generate the coordinates arr buffer----vertex buffer
+    unsigned int  vertex_buffer; glGenBuffers(1, &vertex_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesArrf), verticesArrf, GL_STATIC_DRAW);
+    //the last parameter is usage, divided into two part, including modification and usage freqency
+    //and which device can access, like GL draw function
+
+    //set vertex attributes
+    unsigned int VerAttri_positoin = 0;
+    glVertexAttribPointer(VerAttri_positoin, 2, 2 * sizeof(float), GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(VerAttri_positoin);//you need enable vertex attribute
+
+
+
+
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
